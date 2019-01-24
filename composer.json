@@ -1,9 +1,15 @@
 {
     "name": "naif/nova-push-notification",
-    "description": "A Laravel Nova tool.",
+    "description": "A Laravel Nova tool to send push notifications via OneSignal",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "push",
+        "notifications",
+        "notification",
+        "push_notification",
+        "onesignal",
+        "one_signal"
     ],
     "license": "MIT",
     "require": {
