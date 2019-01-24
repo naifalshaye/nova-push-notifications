@@ -1,5 +1,5 @@
 # Laravel Nova Push Notifications
-A Laravel Nova tool to send push notifications via OneSignal.
+A Laravel Nova tool to send push notifications. Currently supporting just via OneSignal
 
 ## Installation:
 You can install nova push notifications package in to a Laravel app that uses Nova via composer:
