@@ -16,6 +16,9 @@ php artisan vendor:publish --provider="Naif\NovaPushNotification\ToolServiceProv
 Configuration will be published at [config/push_notifications.php].
 
 
+Create an App in OneSignal and get your app id and api key.
+https://onesignal.com/apps
+
 Add the following keys to your `.env` and `.env.example`:
 ```bash
 PUSH_APP_ID=
