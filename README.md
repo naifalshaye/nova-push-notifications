@@ -36,7 +36,7 @@ public function tools()
 
 ![Package screenshot](https://raw.githubusercontent.com/naifalshaye/nova-push-notifications/master/screenshots/screen1.png)
 
-![Package screenshot](https://raw.githubusercontent.com/naifalshaye/nova-push-notifications/master/screenshots/screen1.png)
+![Package screenshot](https://raw.githubusercontent.com/naifalshaye/nova-push-notifications/master/screenshots/screen2.png)
 
 
 ## Support:
