@@ -32,7 +32,7 @@ Add the below to the tools function in app/Providers/NovaServiceProvider.php
 public function tools()
 {
   return [
-    new NovaPushNotification(),
+    new \Naif\NovaPushNotification\NovaPushNotification(),
   ];
 }
 ```
