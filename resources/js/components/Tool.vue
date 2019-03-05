@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <heading class="mb-6">Push Notifications</heading>
+    <div class="relative">
+        <heading class="mb-3">Push Notifications</heading>
 
-        <card class="flex flex-col items-center justify-center" style="min-height: 300px">
+        <card class="overflow-hidden">
             <div>
                 <div style="text-align: center; margin-top:20px; color:green;" v-show="recipients">{{ recipients }}</div>
                 <div style="text-align: center; margin-top:20px; color:red;">
@@ -11,32 +11,32 @@
                     </div>
                 </div>
                 <div class="flex border-b border-40">
-                    <div class="w-2/8 px-22 py-8">
-                        <label class="inline-block" for="heading">Heading</label>
+                    <div class="w-1/5 py-6 px-8">
+                        <label class="inline-block text-80 pt-2 leading-tight" for="heading">Heading</label>
                     </div>
-                    <div class="w-2/2 px-8 py-6">
-                        <input v-model="heading" id="heading" type="text" class="w-full form-control form-input form-input-bordered" style="width:280px !important; margin-left:30px;">
-                    </div>
-                </div>
-                <div class="flex border-b border-40">
-                    <div class="w-2/2 px-8 py-6">
-                        <label class="inline-block" for="text">Text</label>
-                    </div>
-                    <div class="w-2/2 px-8 py-6">
-                        <textarea v-model="text" id="text" class="w-full form-control form-input form-input-bordered" style="height: 140px;" cols="30"></textarea>
+                    <div class="py-6 px-8 w-1/2">
+                        <input v-model="heading" id="heading" type="text" class="w-full form-control form-input form-input-bordered">
                     </div>
                 </div>
                 <div class="flex border-b border-40">
-                    <div class="w-2/8 px-22 py-8">
-                        <label class="inline-block" for="url">Url</label>
+                    <div class="w-1/5 py-6 px-8">
+                        <label class="inline-block text-80 pt-2 leading-tight" for="text">Text</label>
                     </div>
-                    <div class="w-2/2 px-8 py-6">
-                        <input v-model="url" id="url" type="text" class="w-full form-control form-input form-input-bordered" style="width:280px !important; margin-left:30px;">
+                    <div class="py-6 px-8 w-1/2">
+                        <textarea v-model="text" id="text" class="w-full form-control form-input form-input-bordered py-3 h-auto"></textarea>
+                    </div>
+                </div>
+                <div class="flex border-b border-40">
+                    <div class="w-1/5 py-6 px-8">
+                        <label class="inline-block text-80 pt-2 leading-tight" for="url">Url</label>
+                    </div>
+                    <div class="py-6 px-8 w-1/2">
+                        <input v-model="url" id="url" type="text" class="w-full form-control form-input form-input-bordered">
                     </div>
                 </div>
             </div>
-            <div class="px-4 py-2" align="center">
-                <button class="ml-auto btn btn-default btn-primary mr-3" @click="sendSMS">Send</button>
+            <div class="bg-30 flex px-8 py-4">
+                <button class="btn btn-default btn-primary inline-flex items-center relative" @click="sendSMS">Send</button>
             </div>
         </card>
     </div>
