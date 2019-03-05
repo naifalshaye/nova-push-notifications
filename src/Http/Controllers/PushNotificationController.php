@@ -41,7 +41,7 @@ class PushNotificationController
         ];
 
         if ( ! empty($request->heading)) {
-            $data['heading'] = [
+            $data['headings'] = [
                 'en' => $request->heading,
             ];
         }
