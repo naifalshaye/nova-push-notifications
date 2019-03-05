@@ -33,19 +33,18 @@ class PushNotificationController
             $oneSignalClient
         );
 
-        $heading = [
-            'en' => $request->heading,
-        ];
-
-        $content = [
-            'en' => $request->text,
-        ];
-
         $data = [
-            'headings'          => $heading,
-            'contents'          => $content,
             'included_segments' => ['All'],
+            'contents'          => [
+                'en' => $request->text,
+            ],
         ];
+
+        if ( ! empty($request->heading)) {
+            $data['heading'] = [
+                'en' => $request->heading,
+            ];
+        }
 
         if ( ! empty($request->url)) {
             $data['url'] = $request->url;
