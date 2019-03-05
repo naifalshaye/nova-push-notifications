@@ -1,50 +1,54 @@
 <?php
+
 namespace Naif\NovaPushNotification\Http\Controllers;
 
+use GuzzleHttp\Client as GuzzleClient;
+use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Client\Common\HttpMethodsClient;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Illuminate\Http\Request;
+use OneSignal\Config as OneSignalConfig;
+use OneSignal\OneSignal as OneSignalApi;
 
 class PushNotificationController
 {
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return string
+     */
     public function send(Request $request)
     {
-        $content = array(
-            "en" => $request->text
+        $oneSignalConfig = new OneSignalConfig();
+        $oneSignalConfig->setApplicationId(config('push_notifications.app_id'));
+        $oneSignalConfig->setApplicationAuthKey(config('push_notifications.api_key'));
+
+        $oneSignalClient = new HttpMethodsClient(
+            new GuzzleAdapter(new GuzzleClient()),
+            new GuzzleMessageFactory()
         );
 
-        $heading = array(
-            "en" => $request->heading
+        $oneSignalApi = new OneSignalApi(
+            $oneSignalConfig,
+            $oneSignalClient
         );
 
-        $fields = array(
-            'app_id' => config('push_notifications.app_id'),
-            'included_segments' => array('All'),
-            'data' => array("foo" => "bar"),
-            'large_icon' =>"ic_launcher_round.png",
-            'contents' => $content,
-            'headings' => $heading
-        );
+        $heading = [
+            'en' => $request->heading,
+        ];
 
-        $fields = json_encode($fields);
+        $content = [
+            'en' => $request->text,
+        ];
 
-        try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json; charset=utf-8',
-                'Authorization: Basic '.config('push_notifications.api_key')
-            ));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $data = [
+            'headings'          => $heading,
+            'contents'          => $content,
+            'included_segments' => ['All'],
+        ];
 
-            $response = curl_exec($ch);
-            curl_close($ch);
-        } catch (\Exception $e){
-            return $e->getMessage();
-        }
+        $response = $oneSignalApi->notifications->add($data);
 
-        return $response;
+        return json_encode($response);
     }
 }
