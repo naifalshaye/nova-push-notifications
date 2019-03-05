@@ -47,6 +47,10 @@ class PushNotificationController
             'included_segments' => ['All'],
         ];
 
+        if ( ! empty($request->url)) {
+            $data['url'] = $request->url;
+        }
+
         $response = $oneSignalApi->notifications->add($data);
 
         return json_encode($response);
