@@ -7,6 +7,7 @@ use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use OneSignal\Config as OneSignalConfig;
 use OneSignal\OneSignal as OneSignalApi;
 
@@ -19,6 +20,12 @@ class PushNotificationController
      */
     public function send(Request $request)
     {
+        Validator::validate([
+            'text' => $request->text,
+        ], [
+            'text' => 'required',
+        ]);
+
         $oneSignalConfig = new OneSignalConfig();
         $oneSignalConfig->setApplicationId(config('push_notifications.app_id'));
         $oneSignalConfig->setApplicationAuthKey(config('push_notifications.api_key'));
