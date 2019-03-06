@@ -42,6 +42,7 @@ public function tools()
 ![Package screenshot](https://raw.githubusercontent.com/naifalshaye/nova-push-notifications/master/screenshots/screen2.png)
 
 
+
 ## Support:
 naif@naif.io
 
